@@ -4,7 +4,7 @@ import { fetchImages } from "./api/react-pictures";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import ToastContainer from "./components/ToastContainer/ToastContainer";
-import { toast } from "react-toastify";
+import  {toast} from "react-toastify";
 import Loader from "./components/Loader/Loader";
 import ImageModal from "./components/ImageModal/ImageModal";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
@@ -46,12 +46,9 @@ const App = () => {
     getImages();
   }, [page, searchQuery]);
 
-  const onSearchBtn = (query) => {
-    if (!query.trim()) {
-      toast.error("Please fill in the search field!");
 
-      return;
-    }
+  const onSearchBtn = (query) => {
+  
     setSearchQuery(query);
     setImages([]);
     setPage(1);

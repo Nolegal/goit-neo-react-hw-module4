@@ -1,16 +1,28 @@
 import { Field, Form, Formik } from "formik";
 import css from "./SearchBar.module.css";
-// import searchIcon from "../../assets/search.svg";
+
+import toast, { Toaster } from 'react-hot-toast';
 
 import { IoIosSearch } from "react-icons/io";
 
+const notify = () => {
+  toast.error('Please type something');
+};
+
 const SearchBar = ({ onSearchBtn }) => {
+  
   const onSubmit = (values, actions) => {
+    if (!values.query.trim()) {
+      notify();
+  
+      return;
+    }
     onSearchBtn(values.query);
     actions.resetForm();
   };
 
-  return (
+  return (<>
+       <Toaster position="top-center" />
     <Formik
       initialValues={{
         query: "",
@@ -22,8 +34,12 @@ const SearchBar = ({ onSearchBtn }) => {
         <button className={css.searchBtn} type="submit">
           <IoIosSearch/>
         </button>
+       
       </Form>
     </Formik>
+   
+  </>
+  
   );
 };
 
